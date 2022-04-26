@@ -46,7 +46,6 @@
                                     <tr>
                                         <th scope="col">No..</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Staffs</th>
                                         <th scope="col">Date</th>
                                         <th></th>
                                     </tr>
@@ -63,16 +62,9 @@
                                             {{ level.name }}
                                         </td>
                                         <td>
-                                            <i class="bi bi-people"></i>
-                                            <a class="text-heading font-semibold" href="#">
-                                                {{ level.staffs.length }}
-                                            </a>
-                                        </td>
-                                        <td>
                                             {{ formatDate(level.created_at)}}
                                         </td>
                                         <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
                                             <button class="btn btn-sm btn-neutral" @click="editMode(level.id)" data-toggle="modal" data-target="#form" >Edit</button>
                                             <button  @click="deleteLevel(level.id)" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
                                                 <i class="bi bi-trash"></i>
@@ -219,7 +211,6 @@ export default {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
             this.levels = response.data.data;
-            console.log(response);
             vm.makePagination(response.data.meta, response.data.links)
         },
         makePagination(meta, links) {

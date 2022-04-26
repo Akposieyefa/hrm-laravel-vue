@@ -63,7 +63,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/departments">
+                        <router-link class="nav-link" to="/employees">
                             <i class="bi bi-bar-chart"></i> Employees
                         </router-link>
                     </li>

@@ -85,7 +85,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return __webpack_require__.e(/*! import() */ "resources_js_components_Header_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../components/Header */ "./resources/js/components/Header.vue"));
     },
     Nav: function Nav() {
-      return __webpack_require__.e(/*! import() */ "resources_js_components_Nav_vue-_422b1").then(__webpack_require__.bind(__webpack_require__, /*! ../../components/Nav.vue */ "./resources/js/components/Nav.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_components_Nav_vue-_422b2").then(__webpack_require__.bind(__webpack_require__, /*! ../../components/Nav.vue */ "./resources/js/components/Nav.vue"));
     }
   },
   created: function created() {

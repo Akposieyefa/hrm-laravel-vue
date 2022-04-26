@@ -13,6 +13,7 @@ const router = new  VueRouter({
 
         { path: '/departments', name: 'Department', component: () => import('./views/backend/department/Departments.vue') },
         { path: '/levels', name: 'Levels', component: () => import('./views/backend/level/Levels.vue') },
+        { path: '/employees', name: 'Employees', component: () => import('./views/backend/employees/Employees.vue') },
 
 
         { path: '/dashboard', name: 'Dashboard', component: () => import('./views/backend/Dashboard.vue') },

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\HelperController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\OrganizationController;
 use Illuminate\Http\Request;
@@ -51,6 +53,19 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function ($router) {
             Route::get('levels/{id}', 'show');
             Route::patch('levels/{id}', 'update');
             Route::delete('levels/{id}', 'destroy');
+        });
+
+        Route::controller(EmployeeController::class)->group(function () {
+            Route::post('employees', 'store');
+            Route::get('employees', 'index');
+            Route::get('employees/{id}', 'show');
+            Route::patch('employees/{id}', 'update');
+            Route::delete('employees/{id}', 'destroy');
+        });
+
+        Route::controller(HelperController::class)->group(function () {
+            Route::get('/create-helpers', 'createHelper');
+            Route::get('/dashboard-helpers', 'dashboardHelper');
         });
 
     });

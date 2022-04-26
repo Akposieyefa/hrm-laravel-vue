@@ -154,14 +154,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -171,7 +163,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return __webpack_require__.e(/*! import() */ "resources_js_components_Header_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/Header */ "./resources/js/components/Header.vue"));
     },
     Nav: function Nav() {
-      return __webpack_require__.e(/*! import() */ "resources_js_components_Nav_vue-_422b1").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/Nav.vue */ "./resources/js/components/Nav.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_components_Nav_vue-_422b2").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/Nav.vue */ "./resources/js/components/Nav.vue"));
     }
   },
   data: function data() {
@@ -335,10 +327,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 4:
                 response = _context4.sent;
                 _this4.levels = response.data.data;
-                console.log(response);
                 vm.makePagination(response.data.meta, response.data.links);
 
-              case 8:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -995,25 +986,6 @@ var render = function () {
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _c("i", { staticClass: "bi bi-people" }),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "text-heading font-semibold",
-                                  attrs: { href: "#" },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(level.staffs.length) +
-                                      "\n                                        "
-                                  ),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
                               _vm._v(
                                 "\n                                        " +
                                   _vm._s(_vm.formatDate(level.created_at)) +
@@ -1022,15 +994,6 @@ var render = function () {
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-end" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-sm btn-neutral",
-                                  attrs: { href: "#" },
-                                },
-                                [_vm._v("View")]
-                              ),
-                              _vm._v(" "),
                               _c(
                                 "button",
                                 {
@@ -1311,8 +1274,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("No..")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Staffs")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),

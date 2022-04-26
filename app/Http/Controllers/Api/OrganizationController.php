@@ -17,26 +17,26 @@ class OrganizationController extends Controller
 
     public function index()
     {
-        return  $this->organizationRepositoryInterface ->getAllOrganizations();
+        return  $this->organizationRepositoryInterface->getAllOrganizations();
     }
 
     public function store(Request $request)
     {
-        return $this->organizationRepositoryInterface ->createOrganization($request);
+        return $this->organizationRepositoryInterface->createOrganization($request);
     }
 
     public function show(int $id)
     {
-        return $this->organizationRepositoryInterface ->getSingleOrganization($id);
+        return $this->organizationRepositoryInterface->getSingleOrganization($id);
     }
 
     public function update(Request $request, int $id)
     {
-        return $this->organizationRepositoryInterface ->updateOrganization($request, $id);
+        return $this->organizationRepositoryInterface->updateOrganization($request, $id);
     }
 
     public function destroy(int $id)
     {
-        return $this->organizationRepositoryInterface ->deleteOrganization($id);
+        return $this->organizationRepositoryInterface->deleteOrganization($id);
     }
 }

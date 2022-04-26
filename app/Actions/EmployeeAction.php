@@ -3,42 +3,42 @@
 namespace App\Actions;
 
 use App\Enums\RolesEnum;
-use App\Http\Resources\OrganizationResource;
-use App\Models\Organization;
+use App\Models\Employee;
+use App\Http\Resources\EmployeeResource;
 use Illuminate\Http\JsonResponse;
-use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 /**
- *
+ * create employee
  */
-class OrganizationAction
+class EmployeeAction
 {
     /**
-     * @var Organization
+     * @var Employee
      */
-    private Organization $model;
+    private Employee $model;
     /**
      * @var User
      */
     private User $user_model;
 
     /**
-     * @param Organization $model
+     * @param Employee $model
      * @param User $user_model
      */
-    public function __construct(Organization $model, User $user_model)
+    public function __construct(Employee $model, User $user_model)
     {
         $this->model = $model;
-        $this->user_model = $user_model;;
+        $this->user_model = $user_model;
     }
 
     /**
      * @param $req
      * @return JsonResponse
      */
-    public function createOrgAction($req): JsonResponse
+    public function createEmpAction($req): JsonResponse
     {
         DB::beginTransaction();
         try {
@@ -46,14 +46,16 @@ class OrganizationAction
                 'name' => $req->name,
                 'email' => $req->email,
                 'password' => bcrypt('password'),
-                'role' => RolesEnum::ADMIN,
+                'role' => RolesEnum::EMPLOYEE,
                 'email_verified_at' => now()
             ]);
             $org = $this->model->create([
                 'user_id' => $user->id,
-                'organization_name' => $req->name,
                 'phone_number' => $req->phone,
-                'office_address' => $req->address
+                'address' => $req->address,
+                'department_id' => $req->department_id,
+                'level_id' => $req->level_id,
+                'organization_id' => auth()->user()->organization->id
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -66,43 +68,41 @@ class OrganizationAction
         DB::commit();
         return response()->json([
             'message' => 'Organization created successfully',
-            'data' => new OrganizationResource($org),
+            'data' => new EmployeeResource($org),
             'success' => true
         ], 200);
     }
 
     /**
-     * get all department created
      * @return JsonResponse|AnonymousResourceCollection
      */
-    public function  getAllOrgAction(): JsonResponse|AnonymousResourceCollection
+    public function  getAllEmpAction(): JsonResponse|AnonymousResourceCollection
     {
-        $organizations = $this->model->with(['user'])->latest()->paginate(20);
-        if (count($organizations) < 1) {
+        $employees = $this->model->with(['user'])->latest()->paginate(20);
+        if (count($employees) < 1) {
             return response()->json([
-                'message' => 'Sorry no department found',
+                'message' => 'Sorry no employee found',
                 'success' => false
             ], 404);
         }else {
-            return OrganizationResource::collection($organizations)->additional([
-                'message' => "All organizations",
+            return EmployeeResource::collection($employees)->additional([
+                'message' => "All my employees",
                 'success' => true
             ], 200);
         }
     }
 
     /**
-     * get single department
      * @param $id
-     * @return OrganizationResource|JsonResponse
+     * @return EmployeeResource|JsonResponse
      */
-    public function getOrgAction($id): OrganizationResource|JsonResponse
+    public function getEmpAction($id): EmployeeResource|JsonResponse
     {
         $data = $this->model->with(['user'])->where('id', '=', $id)->exists();
         if ($data) {
-            $org = $this->model->find($id);
-            return (new OrganizationResource($org))->additional( [
-                'message' => "Organization details",
+            $emp = $this->model->find($id);
+            return (new EmployeeResource($emp))->additional( [
+                'message' => "Employee details",
                 'success' => true
             ], 200);
         }else {
@@ -114,29 +114,27 @@ class OrganizationAction
     }
 
     /**
-     * update department details
      * @param $req
      * @param $id
      * @return JsonResponse
      */
-    public function updateOrgAction($req, $id): JsonResponse
+    public function updateEmpAction($req, $id): JsonResponse
     {
         $data = $this->model->where('id', '=', $id)->exists();
         if ($data) {
-            $org = $this->model->find($id);
-            $org->slug = null;
+            $emp = $this->model->find($id);
             try {
-                $update = $org->update([
-                    'name' => empty($req->name) ? $org->name : $req->name,
+                $update = $emp->update([
+                    'name' => empty($req->name) ? $emp->name : $req->name,
                 ]);
                 return response()->json([
-                    'message' => 'Organization updated successfully',
-                    'data' => new OrganizationResource($org),
+                    'message' => 'Employee updated successfully',
+                    'data' => new EmployeeResource($emp),
                     'success' => true
                 ], 200);
             } catch (\Exception $e) {
                 return response()->json([
-                    'message' => 'Sorry unable to  updated organization details',
+                    'message' => 'Sorry unable to  updated employee details',
                     'error' => $e->getMessage(),
                     'success' => false
                 ], 400);
@@ -150,25 +148,24 @@ class OrganizationAction
     }
 
     /**
-     * delete department
      * @param $id
      * @return JsonResponse
      */
-    public function deleteOrgAction($id): JsonResponse
+    public function deleteEmpAction($id): JsonResponse
     {
         $data = $this->model->where('id', '=', $id)->exists();
         if ($data) {
-            $org =  $this->model->find($id);
+            $emp =  $this->model->find($id);
             try {
-                $org->delete();
+                $emp->delete();
                 return response()->json([
-                    'message' => 'Organization deleted successfully',
-                    'data' => new OrganizationResource($org),
+                    'message' => 'Employee deleted successfully',
+                    'data' => new EmployeeResource($emp),
                     'success' => true
                 ], 200);
             }catch (\Exception $e) {
                 return response()->json([
-                    'message' => 'Sorry unable to delete organization',
+                    'message' => 'Sorry unable to delete employee',
                     'success' => false
                 ], 400);
             }
