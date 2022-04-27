@@ -831,7 +831,7 @@ var render = function () {
                           "router-link",
                           {
                             staticClass: "nav-link",
-                            attrs: { to: "/departments" },
+                            attrs: { to: "/projects" },
                           },
                           [
                             _c("i", { staticClass: "bi bi-bar-chart" }),

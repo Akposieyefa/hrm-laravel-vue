@@ -77,23 +77,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DashboardComponent",
@@ -102,10 +85,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      staffs: 0,
+      projects: 0,
       departments: 0,
-      levels: 0,
-      unions: 0
+      employees: 0
     };
   },
   methods: {
@@ -113,24 +95,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
+        var api_url, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("dashboard-helpers", {
+                api_url = "http://127.0.0.1:8000/api/v1/" + 'dashboard-helpers';
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(api_url, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem("token"))
                   }
                 });
 
-              case 2:
+              case 3:
                 response = _context.sent;
-                _this.staffs = response.data.data.staffs;
+                _this.employees = response.data.data.employees;
                 _this.departments = response.data.data.departments;
-                _this.levels = response.data.data.levels;
-                _this.unions = response.data.data.unions;
+                _this.projects = response.data.data.projects;
 
               case 7:
               case "end":
@@ -230,7 +212,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row g-6 mb-6" }, [
-    _c("div", { staticClass: "col-xl-3 col-sm-6 col-12" }, [
+    _c("div", { staticClass: "col-xl-4 col-sm-6 col-12" }, [
       _c("div", { staticClass: "card shadow border-0" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "row" }, [
@@ -255,7 +237,7 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-xl-3 col-sm-6 col-12" }, [
+    _c("div", { staticClass: "col-xl-4 col-sm-6 col-12" }, [
       _c("div", { staticClass: "card shadow border-0" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "row" }, [
@@ -266,11 +248,11 @@ var render = function () {
                   staticClass:
                     "h6 font-semibold text-muted text-sm d-block mb-2",
                 },
-                [_vm._v("Staff's")]
+                [_vm._v("Employees")]
               ),
               _vm._v(" "),
               _c("span", { staticClass: "h3 font-bold mb-0" }, [
-                _vm._v(_vm._s(_vm.staffs)),
+                _vm._v(_vm._s(_vm.employees)),
               ]),
             ]),
             _vm._v(" "),
@@ -280,7 +262,7 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-xl-3 col-sm-6 col-12" }, [
+    _c("div", { staticClass: "col-xl-4 col-sm-6 col-12" }, [
       _c("div", { staticClass: "card shadow border-0" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "row" }, [
@@ -291,40 +273,15 @@ var render = function () {
                   staticClass:
                     "h6 font-semibold text-muted text-sm d-block mb-2",
                 },
-                [_vm._v("Unions")]
+                [_vm._v("Projects")]
               ),
               _vm._v(" "),
               _c("span", { staticClass: "h3 font-bold mb-0" }, [
-                _vm._v(_vm._s(_vm.unions)),
+                _vm._v(_vm._s(_vm.projects)),
               ]),
             ]),
             _vm._v(" "),
             _vm._m(2),
-          ]),
-        ]),
-      ]),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-xl-3 col-sm-6 col-12" }, [
-      _c("div", { staticClass: "card shadow border-0" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c(
-                "span",
-                {
-                  staticClass:
-                    "h6 font-semibold text-muted text-sm d-block mb-2",
-                },
-                [_vm._v("Levels")]
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "h3 font-bold mb-0" }, [
-                _vm._v(_vm._s(_vm.levels)),
-              ]),
-            ]),
-            _vm._v(" "),
-            _vm._m(3),
           ]),
         ]),
       ]),
@@ -374,21 +331,6 @@ var staticRenderFns = [
             "icon icon-shape bg-info text-white text-lg rounded-circle",
         },
         [_c("i", { staticClass: "bi bi-clock-history" })]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "icon icon-shape bg-warning text-white text-lg rounded-circle",
-        },
-        [_c("i", { staticClass: "bi bi-minecart-loaded" })]
       ),
     ])
   },

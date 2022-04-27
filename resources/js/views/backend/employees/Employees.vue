@@ -264,7 +264,7 @@ export default {
                     }
                 );
                 this.$toasted.success(response.data.message)
-                this. clearDate()
+                this. clearData()
                 await this.getAllEmp();
             } catch (e) {
                 this.$toasted.error(e.response.data.message)
@@ -308,9 +308,13 @@ export default {
             const options = { year: "numeric", month: "long", day: "numeric" };
             return new Date(dateString).toLocaleDateString(undefined, options);
         },
-        clearDate() {
-            this.department.name = ""
-            this.department.description = ""
+        clearData() {
+            this.employee.name = ""
+            this.employee.email = ""
+            this.employee.phone = ""
+            this.employee.department = 0
+            this.employee.level = 0
+            this.employee.address = ""
         }
     },
 }

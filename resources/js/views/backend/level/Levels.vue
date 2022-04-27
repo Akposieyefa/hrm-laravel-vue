@@ -160,7 +160,6 @@ export default {
                 },
             });
             this.level = response.data.data;
-            console.log(this.level)
         },
         async updateLevel(id) {
             try {
@@ -198,7 +197,7 @@ export default {
                     }
                 );
                 this.$toasted.success(response.data.message)
-                this. clearDate()
+                this. clearData()
                 await this.getAllLevel();
             } catch (e) {
                 this.$toasted.error(e.response.data.message)
@@ -241,7 +240,7 @@ export default {
             const options = { year: "numeric", month: "long", day: "numeric" };
             return new Date(dateString).toLocaleDateString(undefined, options);
         },
-        clearDate() {
+        clearData() {
             this.level.name = ""
         }
     },

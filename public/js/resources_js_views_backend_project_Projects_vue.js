@@ -1,10 +1,10 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_backend_organization_Organizations_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_views_backend_project_Projects_vue"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -13,9 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -166,21 +164,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Organizations",
+  name: "Projects",
   components: {
     Header: function Header() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_Header_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/Header */ "./resources/js/components/Header.vue"));
@@ -191,21 +177,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      organization: {
-        org_name: "",
-        org_phone: "",
-        org_address: "",
-        org_email: ""
+      project: {
+        title: "",
+        duration: "",
+        description: ""
       },
-      organizations: [],
+      projects: [],
       pagination: {},
       edit: false
     };
   },
   created: function created() {
-    this.getAllOrg();
+    this.getAllPro();
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(["user"])),
   methods: {
     editMode: function editMode(id) {
       var _this = this;
@@ -217,9 +202,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _this.edit = true;
-                api_url = "http://127.0.0.1:8000/api/v1/" + 'organizations/';
+                api_url = "http://127.0.0.1:8000/api/v1/" + 'projects/';
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(api_url + id, {
+                return axios.get(api_url + id, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem("token"))
                   }
@@ -227,7 +212,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 4:
                 response = _context.sent;
-                _this.organization = response.data.data;
+                _this.project = response.data.data;
 
               case 6:
               case "end":
@@ -237,7 +222,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       }))();
     },
-    updateOrg: function updateOrg(id) {
+    updatePro: function updatePro(id) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -246,14 +231,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                api_url = "http://127.0.0.1:8000/api/v1/" + 'organizations/';
+                api_url = "http://127.0.0.1:8000/api/v1/" + 'projects/';
                 _context2.prev = 1;
                 _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().patch(api_url + id, {
-                  name: _this2.organization.org_name,
-                  email: _this2.organization.org_email,
-                  phone: _this2.organization.org_phone,
-                  address: _this2.organization.org_address
+                return axios.patch(api_url + id, {
+                  title: _this2.project.title,
+                  project_duration: _this2.project.project_duration,
+                  description: _this2.department.description
                 }, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem("token"))
@@ -263,7 +247,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 4:
                 response = _context2.sent;
                 _context2.next = 7;
-                return _this2.getAllOrg();
+                return _this2.getAllPro();
 
               case 7:
                 _this2.$toasted.success(response.data.message);
@@ -286,7 +270,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee2, null, [[1, 11]]);
       }))();
     },
-    createOrg: function createOrg() {
+    createPro: function createPro() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
@@ -295,14 +279,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
-                api_url = "http://127.0.0.1:8000/api/v1/" + 'organizations';
+                api_url = "http://127.0.0.1:8000/api/v1/" + 'projects';
+                _context3.prev = 1;
                 _context3.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(api_url, {
-                  name: _this3.organization.org_name,
-                  email: _this3.organization.org_email,
-                  phone: _this3.organization.org_phone,
-                  address: _this3.organization.org_address
+                return axios.post(api_url, {
+                  title: _this3.project.title,
+                  project_duration: _this3.project.duration,
+                  description: _this3.project.description
                 }, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem("token"))
@@ -314,30 +297,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 _this3.$toasted.success(response.data.message);
 
-                _this3.clearData();
+                _this3.clearDate();
 
                 _context3.next = 9;
-                return _this3.getAllOrg();
+                return _this3.getAllPro();
 
               case 9:
-                _context3.next = 14;
+                _context3.next = 15;
                 break;
 
               case 11:
                 _context3.prev = 11;
-                _context3.t0 = _context3["catch"](0);
+                _context3.t0 = _context3["catch"](1);
 
                 _this3.$toasted.error(_context3.t0.response.data.message);
 
-              case 14:
+                console.log(_context3.t0.response.data.error);
+
+              case 15:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 11]]);
+        }, _callee3, null, [[1, 11]]);
       }))();
     },
-    getAllOrg: function getAllOrg(page_url) {
+    getAllPro: function getAllPro(page_url) {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
@@ -347,9 +332,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context4.prev = _context4.next) {
               case 0:
                 vm = _this4;
-                page_url = page_url || 'organizations';
+                page_url = page_url || 'projects';
                 _context4.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/v1/" + page_url, {
+                return axios.get("http://127.0.0.1:8000/api/v1/" + page_url, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem("token"))
                   }
@@ -357,11 +342,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 4:
                 response = _context4.sent;
-                _this4.organizations = response.data.data;
-                console.log(response);
+                _this4.projects = response.data.data;
                 vm.makePagination(response.data.meta, response.data.links);
 
-              case 8:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -377,7 +361,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         prev_page_url: links.prev
       };
     },
-    deleteOrg: function deleteOrg(id) {
+    deletePro: function deletePro(id) {
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
@@ -386,15 +370,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
+                api_url = "http://127.0.0.1:8000/api/v1/" + 'projects/';
+
                 if (!confirm("Do you really want to delete this record?")) {
                   _context5.next = 14;
                   break;
                 }
 
-                _context5.prev = 1;
-                api_url = "http://127.0.0.1:8000/api/v1/" + 'organizations/';
+                _context5.prev = 2;
                 _context5.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](api_url + id, {
+                return axios["delete"](api_url + id, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem("token"))
                   }
@@ -406,7 +391,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this5.$toasted.success(response.data.message);
 
                 _context5.next = 9;
-                return _this5.getAllOrg();
+                return _this5.getAllPro();
 
               case 9:
                 _context5.next = 14;
@@ -414,7 +399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 11:
                 _context5.prev = 11;
-                _context5.t0 = _context5["catch"](1);
+                _context5.t0 = _context5["catch"](2);
 
                 _this5.$toasted.error(_context5.t0.response.data.message);
 
@@ -423,7 +408,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[1, 11]]);
+        }, _callee5, null, [[2, 11]]);
       }))();
     },
     formatDate: function formatDate(dateString) {
@@ -435,20 +420,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
     clearData: function clearData() {
-      this.organization.org_name = "";
-      this.organization.org_email = "";
-      this.organization.org_phone = "";
-      this.organization.org_address = "";
+      this.project.title = "";
+      this.project.duration = "";
+      this.project.description = "";
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -570,10 +554,10 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -582,7 +566,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_style_index_0_id_65d7ebbe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_style_index_0_id_115c6d2c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css&");
 
             
 
@@ -591,11 +575,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_style_index_0_id_65d7ebbe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_style_index_0_id_115c6d2c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_style_index_0_id_65d7ebbe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_style_index_0_id_115c6d2c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -877,19 +861,19 @@ module.exports = function (list, options) {
 
 /***/ }),
 
-/***/ "./resources/js/views/backend/organization/Organizations.vue":
-/*!*******************************************************************!*\
-  !*** ./resources/js/views/backend/organization/Organizations.vue ***!
-  \*******************************************************************/
+/***/ "./resources/js/views/backend/project/Projects.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/views/backend/project/Projects.vue ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Organizations_vue_vue_type_template_id_65d7ebbe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true& */ "./resources/js/views/backend/organization/Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true&");
-/* harmony import */ var _Organizations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Organizations.vue?vue&type=script&lang=js& */ "./resources/js/views/backend/organization/Organizations.vue?vue&type=script&lang=js&");
-/* harmony import */ var _Organizations_vue_vue_type_style_index_0_id_65d7ebbe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css& */ "./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css&");
+/* harmony import */ var _Projects_vue_vue_type_template_id_115c6d2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Projects.vue?vue&type=template&id=115c6d2c&scoped=true& */ "./resources/js/views/backend/project/Projects.vue?vue&type=template&id=115c6d2c&scoped=true&");
+/* harmony import */ var _Projects_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Projects.vue?vue&type=script&lang=js& */ "./resources/js/views/backend/project/Projects.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Projects_vue_vue_type_style_index_0_id_115c6d2c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css& */ "./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -900,70 +884,70 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _Organizations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Organizations_vue_vue_type_template_id_65d7ebbe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Organizations_vue_vue_type_template_id_65d7ebbe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Projects_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Projects_vue_vue_type_template_id_115c6d2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Projects_vue_vue_type_template_id_115c6d2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "65d7ebbe",
+  "115c6d2c",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/backend/organization/Organizations.vue"
+component.options.__file = "resources/js/views/backend/project/Projects.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/backend/organization/Organizations.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/views/backend/organization/Organizations.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/views/backend/project/Projects.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/views/backend/project/Projects.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Organizations.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Projects.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css&":
-/*!****************************************************************************************************************************!*\
-  !*** ./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css& ***!
-  \****************************************************************************************************************************/
+/***/ "./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css& ***!
+  \******************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_style_index_0_id_65d7ebbe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=style&index=0&id=65d7ebbe&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_style_index_0_id_115c6d2c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=style&index=0&id=115c6d2c&scoped=true&lang=css&");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/backend/organization/Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true&":
-/*!**************************************************************************************************************!*\
-  !*** ./resources/js/views/backend/organization/Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true& ***!
-  \**************************************************************************************************************/
+/***/ "./resources/js/views/backend/project/Projects.vue?vue&type=template&id=115c6d2c&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/views/backend/project/Projects.vue?vue&type=template&id=115c6d2c&scoped=true& ***!
+  \****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_template_id_65d7ebbe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_template_id_65d7ebbe_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_template_id_115c6d2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_template_id_115c6d2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Organizations_vue_vue_type_template_id_65d7ebbe_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Projects_vue_vue_type_template_id_115c6d2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Projects.vue?vue&type=template&id=115c6d2c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=template&id=115c6d2c&scoped=true&");
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true&":
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/organization/Organizations.vue?vue&type=template&id=65d7ebbe&scoped=true& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=template&id=115c6d2c&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/backend/project/Projects.vue?vue&type=template&id=115c6d2c&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1002,69 +986,25 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.organizations, function (org, index) {
-                          return _c("tr", { key: org.id }, [
+                        _vm._l(_vm.projects, function (proj, index) {
+                          return _c("tr", { key: proj.id }, [
+                            _c("td", [_vm._v(_vm._s(index + 1))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(" " + _vm._s(proj.title))]),
+                            _vm._v(" "),
                             _c("td", [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(index + 1) +
-                                  "\n                                    "
-                              ),
+                              _vm._v(" " + _vm._s(proj.project_duration) + " "),
                             ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
                                 "\n                                        " +
-                                  _vm._s(org.org_name) +
-                                  "\n                                    "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("i", { staticClass: "bi bi-people" }),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "text-heading font-semibold",
-                                  attrs: { href: "#" },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                            " +
-                                      _vm._s(org.user.email) +
-                                      "\n                                        "
-                                  ),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(org.org_phone) +
-                                  "\n                                    "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                "\n                                        " +
-                                  _vm._s(_vm.formatDate(org.created_at)) +
+                                  _vm._s(_vm.formatDate(proj.created_at)) +
                                   "\n                                    "
                               ),
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-end" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-sm btn-neutral",
-                                  attrs: { href: "#" },
-                                },
-                                [_vm._v("View")]
-                              ),
-                              _vm._v(" "),
                               _c(
                                 "button",
                                 {
@@ -1075,7 +1015,7 @@ var render = function () {
                                   },
                                   on: {
                                     click: function ($event) {
-                                      return _vm.editMode(org.id)
+                                      return _vm.editMode(proj.id)
                                     },
                                   },
                                 },
@@ -1090,7 +1030,7 @@ var render = function () {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function ($event) {
-                                      return _vm.deleteOrg(org.id)
+                                      return _vm.deletePro(proj.id)
                                     },
                                   },
                                 },
@@ -1122,7 +1062,7 @@ var render = function () {
                               attrs: { href: "#", tabindex: "-1" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.getAllOrg(
+                                  return _vm.getAllBnk(
                                     _vm.pagination.prev_page_url
                                   )
                                 },
@@ -1163,7 +1103,7 @@ var render = function () {
                               attrs: { href: "#" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.getAllOrg(
+                                  return _vm.getAllBnk(
                                     _vm.pagination.next_page_url
                                   )
                                 },
@@ -1220,15 +1160,15 @@ var render = function () {
               _c("div", [
                 _c("div", { staticClass: "modal-body" }, [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                    _c("label", { attrs: { for: "name" } }, [_vm._v("Title")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.organization.org_name,
-                          expression: "organization.org_name",
+                          value: _vm.project.title,
+                          expression: "project.title",
                         },
                       ],
                       staticClass: "form-control form-control-lg",
@@ -1236,97 +1176,23 @@ var render = function () {
                         type: "text",
                         id: "name",
                         "aria-describedby": "emailHelp",
-                        placeholder: "Enter organization name",
+                        placeholder: "Enter project title",
                       },
-                      domProps: { value: _vm.organization.org_name },
+                      domProps: { value: _vm.project.title },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.organization,
-                            "org_name",
-                            $event.target.value
-                          )
+                          _vm.$set(_vm.project, "title", $event.target.value)
                         },
                       },
                     }),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.organization.org_email,
-                          expression: "organization.org_email",
-                        },
-                      ],
-                      staticClass: "form-control form-control-lg",
-                      attrs: {
-                        type: "text",
-                        id: "email",
-                        "aria-describedby": "emailHelp",
-                        placeholder: "Enter organization email",
-                      },
-                      domProps: { value: _vm.organization.org_email },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.organization,
-                            "org_email",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "phone" } }, [_vm._v("Phone")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.organization.org_phone,
-                          expression: "organization.org_phone",
-                        },
-                      ],
-                      staticClass: "form-control form-control-lg",
-                      attrs: {
-                        type: "text",
-                        id: "phone",
-                        "aria-describedby": "emailHelp",
-                        placeholder: "Enter organization phone",
-                      },
-                      domProps: { value: _vm.organization.org_phone },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.organization,
-                            "org_phone",
-                            $event.target.value
-                          )
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "address" } }, [
-                      _vm._v("Address"),
+                    _c("label", { attrs: { for: "duration" } }, [
+                      _vm._v("Duration"),
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -1334,26 +1200,59 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.organization.org_address,
-                          expression: "organization.org_address",
+                          value: _vm.project.duration,
+                          expression: "project.duration",
                         },
                       ],
                       staticClass: "form-control form-control-lg",
                       attrs: {
                         type: "text",
-                        id: "address",
+                        id: "duration",
                         "aria-describedby": "emailHelp",
-                        placeholder: "Enter organization address",
+                        placeholder: "Enter project duration",
                       },
-                      domProps: { value: _vm.organization.org_address },
+                      domProps: { value: _vm.project.duration },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.project, "duration", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "description" } }, [
+                      _vm._v("Description"),
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.project.description,
+                          expression: "project.description",
+                        },
+                      ],
+                      staticClass: "form-control form-control-md",
+                      attrs: {
+                        id: "description",
+                        placeholder: "Enter project description",
+                        rows: "6",
+                        "aria-label": "With textarea",
+                      },
+                      domProps: { value: _vm.project.description },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
                           _vm.$set(
-                            _vm.organization,
-                            "org_address",
+                            _vm.project,
+                            "description",
                             $event.target.value
                           )
                         },
@@ -1371,7 +1270,7 @@ var render = function () {
                           attrs: { type: "submit" },
                           on: {
                             click: function ($event) {
-                              return _vm.updateOrg(_vm.organization.id)
+                              return _vm.updatePro(_vm.project.id)
                             },
                           },
                         },
@@ -1384,7 +1283,7 @@ var render = function () {
                           attrs: { type: "submit" },
                           on: {
                             click: function ($event) {
-                              return _vm.createOrg()
+                              return _vm.createPro()
                             },
                           },
                         },
@@ -1413,7 +1312,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "row align-items-center" }, [
               _c("div", { staticClass: "col-sm-6 col-12 mb-4 mb-sm-0" }, [
                 _c("h1", { staticClass: "h2 mb-0 ls-tight" }, [
-                  _vm._v("Organization List"),
+                  _vm._v("Project List"),
                 ]),
               ]),
               _vm._v(" "),
@@ -1446,7 +1345,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h5", { staticClass: "mb-0" }, [_vm._v("All Organizations")]),
+      _c("h5", { staticClass: "mb-0" }, [_vm._v("All Projects")]),
     ])
   },
   function () {
@@ -1457,11 +1356,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("No..")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Phone")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Duration")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),

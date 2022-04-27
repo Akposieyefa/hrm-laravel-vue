@@ -228,7 +228,7 @@ export default {
                     }
                 );
                 this.$toasted.success(response.data.message)
-                this. clearDate()
+                this. clearData()
                 await this.getAllOrg();
             } catch (e) {
                 this.$toasted.error(e.response.data.message)
@@ -272,8 +272,11 @@ export default {
             const options = { year: "numeric", month: "long", day: "numeric" };
             return new Date(dateString).toLocaleDateString(undefined, options);
         },
-        clearDate() {
-            this.organization = []
+        clearData() {
+            this.organization.org_name = "";
+            this.organization.org_email = "";
+            this.organization.org_phone = "";
+            this.organization.org_address = "";
         }
     },
 }

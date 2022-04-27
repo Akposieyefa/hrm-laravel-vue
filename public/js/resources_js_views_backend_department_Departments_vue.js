@@ -299,7 +299,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 _this3.$toasted.success(response.data.message);
 
-                _this3.clearDate();
+                _this3.clearData();
 
                 _context3.next = 9;
                 return _this3.getAllDpt();
@@ -421,7 +421,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
-    clearDate: function clearDate() {
+    clearData: function clearData() {
       this.department.name = "";
       this.department.description = "";
     }

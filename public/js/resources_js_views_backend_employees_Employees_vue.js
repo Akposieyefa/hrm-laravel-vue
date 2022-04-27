@@ -370,7 +370,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 _this4.$toasted.success(response.data.message);
 
-                _this4.clearDate();
+                _this4.clearData();
 
                 _context4.next = 9;
                 return _this4.getAllEmp();
@@ -492,9 +492,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
-    clearDate: function clearDate() {
-      this.department.name = "";
-      this.department.description = "";
+    clearData: function clearData() {
+      this.employee.name = "";
+      this.employee.email = "";
+      this.employee.phone = "";
+      this.employee.department = 0;
+      this.employee.level = 0;
+      this.employee.address = "";
     }
   }
 });

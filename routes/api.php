@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\HelperController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\OrganizationController;
+use App\Http\Controllers\Api\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function ($router) {
             Route::get('employees/{id}', 'show');
             Route::patch('employees/{id}', 'update');
             Route::delete('employees/{id}', 'destroy');
+        });
+
+        Route::controller(ProjectController::class)->group(function () {
+            Route::post('projects', 'store');
+            Route::get('projects', 'index');
+            Route::get('projects/{id}', 'show');
+            Route::patch('projects/{id}', 'update');
+            Route::delete('projects/{id}', 'destroy');
         });
 
         Route::controller(HelperController::class)->group(function () {

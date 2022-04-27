@@ -4,8 +4,15 @@ namespace App\Helpers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
+/**
+ *
+ */
 class SystemHelper
 {
+    /**
+     * @param $string
+     * @return mixed
+     */
     public function cleanStringHelper($string): mixed
     {
         if (is_null($string)) {
@@ -15,6 +22,9 @@ class SystemHelper
         }
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function createStaffHelper(): JsonResponse
     {
         return response()->json([
@@ -25,14 +35,16 @@ class SystemHelper
         ], 200);
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function dashBoardCountHelper(): JsonResponse
     {
         return response()->json([
             "data" => [
-                'departments' =>  DB::table('departments')->count(),
-                'levels' =>  DB::table('levels')->count(),
-                'staffs' => DB::table('staffs')->count(),
-                'unions' => DB::table('unions')->count()
+                'departments' =>  DB::table('departments')->where( 'organization_id', '=', auth()->user()->organization->id)->count(),
+                'projects' =>  DB::table('projects')->where('organization_id', '=', auth()->user()->organization->id)->count(),
+                'employees' => DB::table('employees')->where('organization_id', '=', auth()->user()->organization->id)->count(),
             ]
         ], 200);
     }

@@ -202,9 +202,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 4:
                 response = _context.sent;
                 _this.level = response.data.data;
-                console.log(_this.level);
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -283,7 +282,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 _this3.$toasted.success(response.data.message);
 
-                _this3.clearDate();
+                _this3.clearData();
 
                 _context3.next = 9;
                 return _this3.getAllLevel();
@@ -402,7 +401,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
-    clearDate: function clearDate() {
+    clearData: function clearData() {
       this.level.name = "";
     }
   }
