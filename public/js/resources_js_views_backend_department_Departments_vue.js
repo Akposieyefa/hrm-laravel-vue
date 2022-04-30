@@ -1005,7 +1005,24 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _vm._m(3, true),
+                            _c("td", [
+                              _c("i", { staticClass: "bi bi-people" }),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "text-heading font-semibold",
+                                  attrs: { href: "#" },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                           " +
+                                      _vm._s(dept.employees.length) +
+                                      "\n                                        "
+                                  ),
+                                ]
+                              ),
+                            ]),
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
@@ -1165,7 +1182,7 @@ var render = function () {
                       _vm._v("Add New"),
                     ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(3),
               ]),
               _vm._v(" "),
               _c("div", [
@@ -1336,30 +1353,12 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Staff")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Employees")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
         _c("th"),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", { staticClass: "bi bi-people" }),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "text-heading font-semibold", attrs: { href: "#" } },
-        [
-          _vm._v(
-            "\n                                           12\n                                        "
-          ),
-        ]
-      ),
     ])
   },
   function () {

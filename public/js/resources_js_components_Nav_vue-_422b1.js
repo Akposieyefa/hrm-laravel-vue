@@ -115,6 +115,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Nav",
@@ -427,7 +444,7 @@ var render = function () {
                             attrs: { to: "/departments" },
                           },
                           [
-                            _c("i", { staticClass: "bi bi-bar-chart" }),
+                            _c("i", { staticClass: "bi bi-book" }),
                             _vm._v(" Departments\n                    "),
                           ]
                         ),
@@ -462,7 +479,7 @@ var render = function () {
                             attrs: { to: "/employees" },
                           },
                           [
-                            _c("i", { staticClass: "bi bi-bar-chart" }),
+                            _c("i", { staticClass: "bi bi-people" }),
                             _vm._v(" Employees\n                    "),
                           ]
                         ),
@@ -481,7 +498,7 @@ var render = function () {
                             attrs: { to: "/projects" },
                           },
                           [
-                            _c("i", { staticClass: "bi bi-bar-chart" }),
+                            _c("i", { staticClass: "bi bi-folder" }),
                             _vm._v(" Projects\n                    "),
                           ]
                         ),
@@ -502,6 +519,64 @@ var render = function () {
                           [
                             _c("i", { staticClass: "bi bi-bar-chart" }),
                             _vm._v(" Payroll\n                    "),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.role === "employee"
+                ? _c("ul", { staticClass: "navbar-nav" }, [
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: "/dashboard" },
+                          },
+                          [
+                            _c("i", { staticClass: "bi bi-house" }),
+                            _vm._v(" Dashboard\n                    "),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          { staticClass: "nav-link", attrs: { to: "/tasks" } },
+                          [
+                            _c("i", { staticClass: "bi bi-book" }),
+                            _vm._v(" Task\n                    "),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: "/projects" },
+                          },
+                          [
+                            _c("i", { staticClass: "bi bi-folder" }),
+                            _vm._v(" Leave\n                    "),
                           ]
                         ),
                       ],

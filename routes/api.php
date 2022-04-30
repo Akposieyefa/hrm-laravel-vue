@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\HelperController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function ($router) {
             Route::get('projects/{id}', 'show');
             Route::patch('projects/{id}', 'update');
             Route::delete('projects/{id}', 'destroy');
+        });
+
+        Route::controller(TaskController::class)->group(function () {
+            Route::post('tasks', 'store');
+            Route::get('tasks', 'index');
+            Route::get('tasks/{id}', 'show');
+            Route::patch('tasks/{id}', 'update');
+            Route::delete('tasks/{id}', 'destroy');
         });
 
         Route::controller(HelperController::class)->group(function () {

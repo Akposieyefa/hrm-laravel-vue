@@ -16,8 +16,10 @@ const router = new  VueRouter({
         { path: '/employees', name: 'Employees', component: () => import('./views/backend/employees/Employees.vue') },
 
         { path: '/projects', name: 'Projects', component: () => import('./views/backend/project/Projects.vue') },
+        { path: '/project/:id', name: 'Project', component: () => import('./views/backend/project/Project.vue') },
 
-
+        { path: '/tasks', name: 'Tasks', component: () => import('./views/backend/task/Tasks.vue') },
+        { path: '/task/:id', name: 'Task', component: () => import('./views/backend/task/Task.vue') },
 
         { path: '/dashboard', name: 'Dashboard', component: () => import('./views/backend/Dashboard.vue') },
         { path: '/organizations', name: 'Organizations', component: () => import('./views/backend/organization/Organizations.vue') },

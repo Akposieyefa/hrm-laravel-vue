@@ -47,6 +47,7 @@
                                         <th scope="col">No..</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Duration</th>
+                                        <th scope="col">Task</th>
                                         <th scope="col">Date</th>
                                         <th></th>
                                     </tr>
@@ -59,10 +60,12 @@
                                         <td>{{ index + 1 }}</td>
                                         <td> {{ proj.title }}</td>
                                         <td> {{ proj.project_duration}} </td>
+                                        <td> {{ proj.tasks.length }} </td>
                                         <td>
                                             {{ formatDate(proj.created_at)}}
                                         </td>
                                         <td class="text-end">
+                                            <router-link  v-bind:to="'/project/' + proj.id" class="btn btn-sm btn-neutral">View</router-link>
                                             <button  class="btn btn-sm btn-neutral" @click="editMode(proj.id)" data-toggle="modal" data-target="#form">Edit</button>
                                             <button  @click="deletePro(proj.id)" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
                                                 <i class="bi bi-trash"></i>
@@ -214,7 +217,6 @@ export default {
                     }
                 );
                 this.$toasted.success(response.data.message)
-                this. clearDate()
                 await this.getAllPro();
             } catch (e) {
                 this.$toasted.error(e.response.data.message)

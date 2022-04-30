@@ -2,22 +2,23 @@
 
 namespace App\Actions;
 
+use App\Http\Resources\TaskResource;
 use Illuminate\Http\JsonResponse;
-use App\Models\Project;
-use App\Http\Resources\ProjectResource;
+use App\Models\Task;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ProjectAction
+class TaskAction
 {
-    /**
-     * @var Project
-     */
-    private Project $model;
 
     /**
-     * @param Project $model
+     * @var Task
      */
-    public function __construct(Project $model)
+    private Task $model;
+
+    /**
+     * @param Task $model
+     */
+    public function __construct(Task $model)
     {
         $this->model = $model;
     }
@@ -26,23 +27,23 @@ class ProjectAction
      * @param $req
      * @return JsonResponse
      */
-    public function createProAction($req): JsonResponse
+    public function createTaskAction($req): JsonResponse
     {
         try {
-            $dpt = $this->model->create([
+            $task = $this->model->create([
                 'title' => $req->title,
                 'description' => $req->description,
-                'project_duration' => $req->project_duration,
-                'organization_id' => auth()->user()->organization->id
+                'project_id' => $req->project_id,
+                'user_id' => $req->employee_id
             ]);
             return response()->json([
-                'message' => 'Project created successfully',
-                'data' => new ProjectResource($dpt),
+                'message' => 'Task created successfully',
+                'data' => new TaskResource($task),
                 'success' => true
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Sorry unable to  created project',
+                'message' => 'Sorry unable to  created task',
                 'error' => $e->getMessage(),
                 'success' => false
             ], 400);
@@ -52,17 +53,17 @@ class ProjectAction
     /**
      * @return JsonResponse|AnonymousResourceCollection
      */
-    public function  getAllProAction(): JsonResponse|AnonymousResourceCollection
+    public function  getAllTaskAction(): JsonResponse|AnonymousResourceCollection
     {
-        $projects = $this->model->with(['organization'])->latest()->paginate(20);
-        if (count($projects) < 1) {
+        $tasks = $this->model->with(['employee', 'project'])->where('user_id', '=', auth()->user()->id)->latest()->paginate(20);
+        if (count($tasks) < 1) {
             return response()->json([
-                'message' => 'Sorry no department found',
+                'message' => 'Sorry no task found',
                 'success' => false
             ], 404);
         }else {
-            return ProjectResource::collection($projects)->additional([
-                'message' => "All project",
+            return TaskResource::collection($tasks)->additional([
+                'message' => "All task",
                 'success' => true
             ], 200);
         }
@@ -70,15 +71,15 @@ class ProjectAction
 
     /**
      * @param $id
-     * @return ProjectResource|JsonResponse
+     * @return TaskResource|JsonResponse
      */
-    public function getProAction($id): ProjectResource|JsonResponse
+    public function getTaskAction($id): TaskResource|JsonResponse
     {
-        $data = $this->model->with(['organization', 'tasks'])->where('id', '=', $id)->exists();
+        $data = $this->model->with(['project', 'employee'])->where('id', '=', $id)->exists();
         if ($data) {
-            $project = $this->model->find($id);
-            return (new ProjectResource($project))->additional( [
-                'message' => "Project details",
+            $task = $this->model->find($id);
+            return (new TaskResource($task))->additional( [
+                'message' => "Task details",
                 'success' => true
             ], 200);
         }else {
@@ -94,26 +95,25 @@ class ProjectAction
      * @param $id
      * @return JsonResponse
      */
-    public function updateProAction($req, $id): JsonResponse
+    public function updateTaskAction($req, $id): JsonResponse
     {
         $data = $this->model->where('id', '=', $id)->exists();
         if ($data) {
-            $pro = $this->model->find($id);
-            $pro->slug = null;
+            $task = $this->model->find($id);
+            $task->slug = null;
             try {
-                $update = $pro->update([
-                    'title' => empty($req->title) ? $pro->title : $req->title,
-                    'project_duration' => empty($req->project_duration) ? $pro->project_duration : $req->project_duration,
-                    'description' =>   empty($req->description) ? $pro->description : $req->description
+                $update = $task->update([
+                    'status' => true,
+                    'status_description' => $req->status_description
                 ]);
                 return response()->json([
-                    'message' => 'Project updated successfully',
-                    'data' => new ProjectResource($pro),
+                    'message' => 'Task updated successfully',
+                    'data' => new TaskResource($task),
                     'success' => true
                 ], 200);
             } catch (\Exception $e) {
                 return response()->json([
-                    'message' => 'Sorry unable to  updated project details',
+                    'message' => 'Sorry unable to  updated task',
                     'error' => $e->getMessage(),
                     'success' => false
                 ], 400);
@@ -130,21 +130,21 @@ class ProjectAction
      * @param $id
      * @return JsonResponse
      */
-    public function deleteProAction($id): JsonResponse
+    public function deleteTaskAction($id): JsonResponse
     {
         $data = $this->model->where('id', '=', $id)->exists();
         if ($data) {
-            $pro =  $this->model->find($id);
+            $task =  $this->model->find($id);
             try {
-                $pro->delete();
+                $task->delete();
                 return response()->json([
-                    'message' => 'Department deleted successfully',
-                    'data' => new ProjectResource($pro),
+                    'message' => 'Task deleted successfully',
+                    'data' => new TaskResource($task),
                     'success' => true
                 ], 200);
             }catch (\Exception $e) {
                 return response()->json([
-                    'message' => 'Sorry unable to delete project',
+                    'message' => 'Sorry unable to delete task',
                     'success' => false
                 ], 400);
             }
@@ -155,4 +155,5 @@ class ProjectAction
             ], 404);
         }
     }
+
 }

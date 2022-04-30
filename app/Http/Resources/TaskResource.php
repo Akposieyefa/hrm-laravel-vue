@@ -9,16 +9,16 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @property mixed $id
- * @property mixed $organization
+ * @property mixed $project
+ * @property mixed $employee
  * @property mixed $title
  * @property mixed $description
- * @property mixed $project_duration
+ * @property mixed $status
  * @property mixed $slug
  * @property mixed $created_at
  * @property mixed $updated_at
- * @property mixed $tasks
  */
-class ProjectResource extends JsonResource
+class TaskResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -31,11 +31,11 @@ class ProjectResource extends JsonResource
         $clean = new SystemHelper();
         return [
             'id' => $this->id,
-            'organization' => new OrganizationResource($this->organization),
-            'tasks' => TaskResource::collection($this->tasks),
+            'project' => $this->project,
+            'employee' => new UserResource($this->employee),
             'title' => $clean->cleanStringHelper($this->title),
             'description' => $clean->cleanStringHelper($this->description),
-            'project_duration' => $clean->cleanStringHelper($this->project_duration),
+            'status' => $this->status,
             'slug' => $clean->cleanStringHelper($this->slug),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

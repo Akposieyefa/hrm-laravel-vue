@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_Nav_vue-_422b2"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_components_Nav_vue-_422b3"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Nav.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************!*\
@@ -18,23 +18,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -421,7 +404,7 @@ var render = function () {
                             attrs: { to: "/departments" },
                           },
                           [
-                            _c("i", { staticClass: "bi bi-book" }),
+                            _c("i", { staticClass: "bi bi-bar-chart" }),
                             _vm._v(" Departments\n                    "),
                           ]
                         ),
@@ -456,7 +439,7 @@ var render = function () {
                             attrs: { to: "/employees" },
                           },
                           [
-                            _c("i", { staticClass: "bi bi-people" }),
+                            _c("i", { staticClass: "bi bi-bar-chart" }),
                             _vm._v(" Employees\n                    "),
                           ]
                         ),
@@ -475,7 +458,7 @@ var render = function () {
                             attrs: { to: "/projects" },
                           },
                           [
-                            _c("i", { staticClass: "bi bi-folder" }),
+                            _c("i", { staticClass: "bi bi-bar-chart" }),
                             _vm._v(" Projects\n                    "),
                           ]
                         ),
@@ -496,64 +479,6 @@ var render = function () {
                           [
                             _c("i", { staticClass: "bi bi-bar-chart" }),
                             _vm._v(" Payroll\n                    "),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.user.role === "employee"
-                ? _c("ul", { staticClass: "navbar-nav" }, [
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: "/dashboard" },
-                          },
-                          [
-                            _c("i", { staticClass: "bi bi-house" }),
-                            _vm._v(" Dashboard\n                    "),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          { staticClass: "nav-link", attrs: { to: "/tasks" } },
-                          [
-                            _c("i", { staticClass: "bi bi-book" }),
-                            _vm._v(" Task\n                    "),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: "/projects" },
-                          },
-                          [
-                            _c("i", { staticClass: "bi bi-folder" }),
-                            _vm._v(" Leave\n                    "),
                           ]
                         ),
                       ],

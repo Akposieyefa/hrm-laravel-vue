@@ -46,7 +46,7 @@
                                     <tr>
                                         <th scope="col">No..</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Staff</th>
+                                        <th scope="col">Employees</th>
                                         <th scope="col">Date</th>
                                         <th></th>
                                     </tr>
@@ -65,7 +65,7 @@
                                         <td>
                                             <i class="bi bi-people"></i>
                                             <a class="text-heading font-semibold" href="#">
-                                               12
+                                               {{ dept.employees.length }}
                                             </a>
                                         </td>
                                         <td>

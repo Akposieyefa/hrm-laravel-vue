@@ -164,6 +164,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Projects",
@@ -297,29 +300,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 _this3.$toasted.success(response.data.message);
 
-                _this3.clearDate();
-
-                _context3.next = 9;
+                _context3.next = 8;
                 return _this3.getAllPro();
 
-              case 9:
-                _context3.next = 15;
+              case 8:
+                _context3.next = 14;
                 break;
 
-              case 11:
-                _context3.prev = 11;
+              case 10:
+                _context3.prev = 10;
                 _context3.t0 = _context3["catch"](1);
 
                 _this3.$toasted.error(_context3.t0.response.data.message);
 
                 console.log(_context3.t0.response.data.error);
 
-              case 15:
+              case 14:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[1, 11]]);
+        }, _callee3, null, [[1, 10]]);
       }))();
     },
     getAllPro: function getAllPro(page_url) {
@@ -997,6 +998,10 @@ var render = function () {
                             ]),
                             _vm._v(" "),
                             _c("td", [
+                              _vm._v(" " + _vm._s(proj.tasks.length) + " "),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
                               _vm._v(
                                 "\n                                        " +
                                   _vm._s(_vm.formatDate(proj.created_at)) +
@@ -1004,39 +1009,53 @@ var render = function () {
                               ),
                             ]),
                             _vm._v(" "),
-                            _c("td", { staticClass: "text-end" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-sm btn-neutral",
-                                  attrs: {
-                                    "data-toggle": "modal",
-                                    "data-target": "#form",
+                            _c(
+                              "td",
+                              { staticClass: "text-end" },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-sm btn-neutral",
+                                    attrs: { to: "/project/" + proj.id },
                                   },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.editMode(proj.id)
+                                  [_vm._v("View")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-sm btn-neutral",
+                                    attrs: {
+                                      "data-toggle": "modal",
+                                      "data-target": "#form",
+                                    },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.editMode(proj.id)
+                                      },
                                     },
                                   },
-                                },
-                                [_vm._v("Edit")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-sm btn-square btn-neutral text-danger-hover",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.deletePro(proj.id)
+                                  [_vm._v("Edit")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-sm btn-square btn-neutral text-danger-hover",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.deletePro(proj.id)
+                                      },
                                     },
                                   },
-                                },
-                                [_c("i", { staticClass: "bi bi-trash" })]
-                              ),
-                            ]),
+                                  [_c("i", { staticClass: "bi bi-trash" })]
+                                ),
+                              ],
+                              1
+                            ),
                           ])
                         }),
                         0
@@ -1359,6 +1378,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Duration")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Task")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),

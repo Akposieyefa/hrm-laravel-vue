@@ -13,6 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $slug
  * @property mixed $created_at
  * @property mixed $updated_at
+ * @property mixed $employees
  */
 class DepartmentResource extends JsonResource
 {
@@ -29,6 +30,7 @@ class DepartmentResource extends JsonResource
             'id' => $this->id,
             'name' => $clean->cleanStringHelper($this->name),
             'description' => $clean->cleanStringHelper($this->description),
+            'employees' => $this->employees,
             'slug' => $clean->cleanStringHelper($this->slug),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

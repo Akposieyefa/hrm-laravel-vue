@@ -54,7 +54,7 @@
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/departments">
-                            <i class="bi bi-bar-chart"></i> Departments
+                            <i class="bi bi-book"></i> Departments
                         </router-link>
                     </li>
                     <li class="nav-item">
@@ -64,17 +64,34 @@
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/employees">
-                            <i class="bi bi-bar-chart"></i> Employees
+                            <i class="bi bi-people"></i> Employees
                         </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/projects">
-                            <i class="bi bi-bar-chart"></i> Projects
+                            <i class="bi bi-folder"></i> Projects
                         </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/departments">
                             <i class="bi bi-bar-chart"></i> Payroll
+                        </router-link>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" v-if="user.role === 'employee'">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/dashboard">
+                            <i class="bi bi-house"></i> Dashboard
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/tasks">
+                            <i class="bi bi-book"></i> Task
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/projects">
+                            <i class="bi bi-folder"></i> Leave
                         </router-link>
                     </li>
                 </ul>

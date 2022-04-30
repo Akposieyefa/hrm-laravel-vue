@@ -24,6 +24,11 @@ class Department extends Model
         return $this->belongsTo(Organization::class, 'organization_id');
     }
 
+    public function employees(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Employee::class);
+    }
+
     public function sluggable(): array
     {
         return [

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Repositories\Contracts\TaskRepositoryInterface;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,22 +12,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method find($id)
  * @method where(string $string, string $string1, $id)
  */
-class Project extends Model
+class Task extends Model
 {
-    use HasFactory, Sluggable, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = [
-        'organization_id', 'title' ,'description', 'project_duration', 'slug'
+        'project_id', 'user_id', 'title', 'description', 'status', 'slug', 'status_description'
     ];
 
-    public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Organization::class, 'organization_id');
+        return $this->belongsTo(Project::class, 'project_id');
     }
 
-    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function sluggable(): array
@@ -39,4 +38,5 @@ class Project extends Model
             ]
         ];
     }
+
 }
