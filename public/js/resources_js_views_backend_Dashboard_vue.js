@@ -11,13 +11,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -74,6 +84,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Dashboard",
@@ -89,15 +122,64 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    console.log(this.user);
+    this.getAllLeaves();
   },
   data: function data() {
     return {
-      staffs: [],
+      leaves: [],
       pagination: {}
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(["user"]))
+  methods: {
+    getAllLeaves: function getAllLeaves(page_url) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var vm, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                vm = _this;
+                page_url = page_url || 'leaves';
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/v1/" + page_url, {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                  }
+                });
+
+              case 4:
+                response = _context.sent;
+                _this.leaves = response.data.data;
+                vm.makePagination(response.data.meta, response.data.links);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    makePagination: function makePagination(meta, links) {
+      this.pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      };
+    },
+    formatDate: function formatDate(dateString) {
+      var options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"]))
 });
 
 /***/ }),
@@ -657,31 +739,187 @@ var render = function () {
                     ? _c("DashboardComponent")
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card shadow border-0 mb-7" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "table-responsive" }, [
-                      _c(
-                        "table",
-                        { staticClass: "table table-hover table-nowrap" },
-                        [
-                          _vm._m(1),
-                          _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _vm._v(
-                                "\n                                       " +
-                                  _vm._s(_vm.user) +
-                                  "\n                                   "
+                  _vm.user.role === "admin"
+                    ? _c("div", { staticClass: "card shadow border-0 mb-7" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "table-responsive" }, [
+                          _c(
+                            "table",
+                            { staticClass: "table table-hover table-nowrap" },
+                            [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.leaves, function (leave, index) {
+                                  return _c("tr", { key: leave.id }, [
+                                    _c("td", [_vm._v(" " + _vm._s(index + 1))]),
+                                    _vm._v(" "),
+                                    _vm.user.role === "admin"
+                                      ? _c("td", [
+                                          _vm._v(" " + _vm._s(leave.user.name)),
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(" " + _vm._s(leave.title) + "  "),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "  " +
+                                          _vm._s(
+                                            _vm.formatDate(
+                                              leave.leave_start_date
+                                            )
+                                          ) +
+                                          " "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      leave.status === ""
+                                        ? _c(
+                                            "strong",
+                                            { staticClass: "text-warning" },
+                                            [_vm._v("Pending")]
+                                          )
+                                        : _c(
+                                            "strong",
+                                            { staticClass: "text-danger" },
+                                            [_vm._v(_vm._s(leave.status))]
+                                          ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "  " +
+                                          _vm._s(
+                                            _vm.formatDate(leave.created_at)
+                                          ) +
+                                          " "
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      { staticClass: "text-end" },
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-neutral",
+                                            attrs: { to: "/leave/" + leave.id },
+                                          },
+                                          [_vm._v("View")]
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                  ])
+                                }),
+                                0
                               ),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "card-footer border-0 py-5" },
+                          [
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "page-item",
+                                    class: [
+                                      {
+                                        disabled: !_vm.pagination.prev_page_url,
+                                      },
+                                    ],
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#", tabindex: "-1" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.getAllLeaves(
+                                              _vm.pagination.prev_page_url
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [_vm._v("Previous")]
+                                    ),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Page " +
+                                            _vm._s(
+                                              _vm.pagination.current_page
+                                            ) +
+                                            " of " +
+                                            _vm._s(_vm.pagination.last_page) +
+                                            " "
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "page-item",
+                                    class: [
+                                      {
+                                        disabled: !_vm.pagination.next_page_url,
+                                      },
+                                    ],
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.getAllLeaves(
+                                              _vm.pagination.next_page_url
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [_vm._v("Next")]
+                                    ),
+                                  ]
+                                ),
+                              ]),
                             ]),
-                          ]),
-                        ]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-footer border-0 py-5" }),
-                  ]),
+                          ]
+                        ),
+                      ])
+                    : _vm._e(),
                 ],
                 1
               ),
@@ -711,15 +949,15 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("No..")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Employee")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Staff ID")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Start Date")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Phone")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Appointment Date")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
         _c("th"),
       ]),

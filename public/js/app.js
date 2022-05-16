@@ -2263,6 +2263,18 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       return __webpack_require__.e(/*! import() */ "resources_js_views_backend_employees_Employees_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/backend/employees/Employees.vue */ "./resources/js/views/backend/employees/Employees.vue"));
     }
   }, {
+    path: '/leaves',
+    name: 'Leaves',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_backend_leave_Leaves_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/backend/leave/Leaves.vue */ "./resources/js/views/backend/leave/Leaves.vue"));
+    }
+  }, {
+    path: '/leave/:id',
+    name: 'Leave',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_backend_leave_Leave_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/backend/leave/Leave.vue */ "./resources/js/views/backend/leave/Leave.vue"));
+    }
+  }, {
     path: '/projects',
     name: 'Projects',
     component: function component() {
@@ -37365,7 +37377,7 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Verify_vue":1,"resources_js_views_ForgotPassword_vue":1,"resources_js_views_backend_department_Departments_vue":1,"resources_js_views_backend_level_Levels_vue":1,"resources_js_views_backend_employees_Employees_vue":1,"resources_js_views_backend_project_Projects_vue":1,"resources_js_views_backend_project_Project_vue":1,"resources_js_views_backend_task_Tasks_vue":1,"resources_js_views_backend_task_Task_vue":1,"resources_js_views_backend_Dashboard_vue":1,"resources_js_views_backend_organization_Organizations_vue":1,"resources_js_views_backend_Profile_vue":1,"resources_js_views_Notfound_vue":1,"resources_js_components_Header_vue":1,"resources_js_components_Nav_vue-_422b2":1,"resources_js_components_Nav_vue-_422b0":1,"resources_js_components_Nav_vue-_422b1":1,"resources_js_components_DashboardComponent_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Verify_vue":1,"resources_js_views_ForgotPassword_vue":1,"resources_js_views_backend_department_Departments_vue":1,"resources_js_views_backend_level_Levels_vue":1,"resources_js_views_backend_employees_Employees_vue":1,"resources_js_views_backend_leave_Leaves_vue":1,"resources_js_views_backend_leave_Leave_vue":1,"resources_js_views_backend_project_Projects_vue":1,"resources_js_views_backend_project_Project_vue":1,"resources_js_views_backend_task_Tasks_vue":1,"resources_js_views_backend_task_Task_vue":1,"resources_js_views_backend_Dashboard_vue":1,"resources_js_views_backend_organization_Organizations_vue":1,"resources_js_views_backend_Profile_vue":1,"resources_js_views_Notfound_vue":1,"resources_js_components_Header_vue":1,"resources_js_components_Nav_vue-_422b2":1,"resources_js_components_Nav_vue-_422b0":1,"resources_js_components_Nav_vue-_422b1":1,"resources_js_components_DashboardComponent_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

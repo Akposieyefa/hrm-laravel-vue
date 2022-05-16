@@ -15,6 +15,9 @@ const router = new  VueRouter({
         { path: '/levels', name: 'Levels', component: () => import('./views/backend/level/Levels.vue') },
         { path: '/employees', name: 'Employees', component: () => import('./views/backend/employees/Employees.vue') },
 
+        { path: '/leaves', name: 'Leaves', component: () => import('./views/backend/leave/Leaves.vue') },
+        { path: '/leave/:id', name: 'Leave', component: () => import('./views/backend/leave/Leave.vue') },
+
         { path: '/projects', name: 'Projects', component: () => import('./views/backend/project/Projects.vue') },
         { path: '/project/:id', name: 'Project', component: () => import('./views/backend/project/Project.vue') },
 

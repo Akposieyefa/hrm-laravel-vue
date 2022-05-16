@@ -13,7 +13,7 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 col-12 mb-4 mb-sm-0">
                                     <!-- Title -->
-                                    <h1 class="h2 mb-0 ls-tight">Project List</h1>
+                                    <h1 class="h2 mb-0 ls-tight">Leave Application</h1>
                                 </div>
                                 <!-- Actions -->
                                 <div class="col-sm-6 col-12 text-sm-end">
@@ -22,7 +22,7 @@
                                     <span class=" pe-2">
                                         <i class="bi bi-plus"></i>
                                     </span>
-                                            <span>Create</span>
+                                            <span>Apply</span>
                                         </button>
                                     </div>
                                 </div>
@@ -38,36 +38,38 @@
                         <!-- Card stats -->
                         <div class="card shadow border-0 mb-7">
                             <div class="card-header">
-                                <h5 class="mb-0">All Projects</h5>
+                                <h5 class="mb-0">All Leave</h5>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-hover table-nowrap">
                                     <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No..</th>
+                                        <th scope="col" v-if="user.role === 'admin'">Employee</th>
                                         <th scope="col">Title</th>
-                                        <th scope="col">Duration</th>
-                                        <th scope="col">Task</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Date</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr
-                                        v-for="(proj, index) in projects"
-                                        :key="proj.id"
+                                        v-for="(leave, index) in leaves"
+                                        :key="leave.id"
                                     >
-                                        <td>{{ index + 1 }}</td>
-                                        <td> {{ proj.title }}</td>
-                                        <td> {{ proj.project_duration}} </td>
-                                        <td> {{ proj.tasks.length }} </td>
-                                        <td> {{ formatDate(proj.created_at)}}</td>
+                                        <td> {{ index + 1 }}</td>
+                                        <td v-if="user.role === 'admin'"> {{ leave.user.name }}</td>
+                                        <td> {{ leave.title }}  </td>
+                                        <td>  {{ formatDate(leave.leave_start_date)}} </td>
+                                        <td>
+                                            <strong class="text-warning" v-if="leave.status === ''">Pending</strong>
+                                            <strong class="text-success" v-else-if="leave.status === 'approved'">{{ leave.status }}</strong>
+                                            <strong class="text-danger" v-else>{{ leave.status }}</strong>
+                                        </td>
+                                        <td>  {{ formatDate(leave.created_at)}} </td>
                                         <td class="text-end">
-                                            <router-link  v-bind:to="'/project/' + proj.id" class="btn btn-sm btn-neutral">View</router-link>
-                                            <button  class="btn btn-sm btn-neutral" @click="editMode(proj.id)" data-toggle="modal" data-target="#form">Edit</button>
-                                            <button  @click="deletePro(proj.id)" type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
+                                            <router-link  v-bind:to="'/leave/' + leave.id" class="btn btn-sm btn-neutral">View</router-link>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -77,11 +79,11 @@
                                 <nav aria-label="...">
                                     <ul class="pagination">
                                         <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
-                                            <a class="page-link"  @click="getAllPro(pagination.prev_page_url)" href="#" tabindex="-1">Previous</a>
+                                            <a class="page-link"  @click="getAllLeaves(pagination.prev_page_url)" href="#" tabindex="-1">Previous</a>
                                         </li>
                                         <li class="page-item disabled"><a class="page-link" href="#">Page {{ pagination.current_page}} of {{ pagination.last_page}} </a></li>
                                         <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
-                                            <a class="page-link" @click="getAllPro(pagination.next_page_url)" href="#">Next</a>
+                                            <a class="page-link" @click="getAllLeaves(pagination.next_page_url)" href="#">Next</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -97,8 +99,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header border-bottom-0">
-                        <h5 class="modal-title" v-if="edit">Edit Department</h5>
-                        <h5 class="modal-title" v-else>Add New</h5>
+                        <h5 class="modal-title" >Apply for leave</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -106,28 +107,27 @@
                     <div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="name">Title</label>
-                                <input type="text" v-model="project.title" class="form-control form-control-lg" id="name" aria-describedby="emailHelp" placeholder="Enter project title">
+                                <label for="name">Subject</label>
+                                <input type="text" v-model="leave.title" class="form-control form-control-lg" id="name" aria-describedby="emailHelp" placeholder="Enter leave subject">
                             </div>
                             <div class="form-group">
-                                <label for="duration">Duration</label>
-                                <input type="text" v-model="project.duration" class="form-control form-control-lg" id="duration" aria-describedby="emailHelp" placeholder="Enter project duration">
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="name">Description</label>
                                 <textarea
                                     id="description"
-                                    v-model="project.description"
-                                    placeholder="Enter project description"
+                                    placeholder="Enter brief reason"
+                                    v-model="leave.desc"
                                     rows="6"
                                     class="form-control form-control-md"
                                     aria-label="With textarea"
                                 ></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="date">Start Date</label>
+                                <input type="date" v-model="leave.date" class="form-control form-control-lg" id="date" aria-describedby="emailHelp" placeholder="Enter level name">
+                            </div>
                         </div>
                         <div class="modal-footer border-top-0">
-                            <button type="submit" @click="updatePro(project.id)" class="btn btn-sm btn-dark" v-if="edit">Update</button>
-                            <button type="submit" @click="createPro()" class="btn btn-sm btn-dark" v-else>Create</button>
+                            <button type="submit" @click="applyForLeave()" class="btn btn-sm btn-dark" >Apply</button>
                         </div>
                     </div>
                 </div>
@@ -137,76 +137,44 @@
     </div>
 </template>
 
+
 <script>
 import {mapGetters} from "vuex";
+import axios from "axios";
 
 export default {
-    name: "Projects",
+    name: "Leaves",
     components: {
         Header: () => import("../../../components/Header"),
         Nav: () => import("../../../components/Nav.vue"),
     },
     data() {
         return {
-            project: {
+            leave: {
                 title: "",
-                duration: "",
-                description: ""
+                desc: "",
+                date: ""
             },
-            projects: [],
-            pagination: {},
-            edit: false,
+            leaves: [],
+            pagination: {}
         }
     },
     created() {
-        this.getAllPro();
+        this.getAllLeaves();
     },
     computed: {
         ...mapGetters(["user"]),
     },
     methods : {
-        async editMode(id){
-            this.edit = true;
-            let api_url = process.env.MIX_API_BASE_URL + 'projects/'
-            const response = await axios.get(api_url + id, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            });
-            this.project = response.data.data;
-        },
-        async updatePro(id) {
-            let api_url = process.env.MIX_API_BASE_URL + 'projects/'
+        async applyForLeave() {
             try {
-                const response = await axios.patch(
-                    api_url + id,
-                    {
-                        title: this.project.title,
-                        project_duration: this.project.project_duration,
-                        description: this.department.description
-                    },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem("token")}`,
-                        },
-                    }
-                );
-                await this.getAllPro()
-                this.$toasted.success(response.data.message)
-                this.edit = false;
-            } catch (e) {
-                this.$toasted.error(e.response.data.message)
-            }
-        },
-        async createPro() {
-            let api_url = process.env.MIX_API_BASE_URL + 'projects'
-            try {
+                let api_url = process.env.MIX_API_BASE_URL + 'leaves'
                 const response = await axios.post(
                     api_url,
                     {
-                        title: this.project.title,
-                        project_duration: this.project.duration,
-                        description: this.project.description,
+                        title: this.leave.title,
+                        description: this.leave.desc,
+                        leave_start_date: this.leave.date
                     },
                     {
                         headers: {
@@ -215,19 +183,19 @@ export default {
                     }
                 );
                 this.$toasted.success(response.data.message)
-                await this.getAllPro();
+                this. clearData()
+                await this.getAllLeaves();
             } catch (e) {
                 this.$toasted.error(e.response.data.message)
-                console.log(e.response.data.error)
             }
         },
-        async getAllPro(page_url) {
+        async getAllLeaves(page_url) {
             let vm = this;
-            page_url = page_url || 'projects'
+            page_url = page_url || 'leaves'
             const response = await axios.get(process.env.MIX_API_BASE_URL + page_url, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
-            this.projects = response.data.data;
+            this.leaves = response.data.data;
             vm.makePagination(response.data.meta, response.data.links)
         },
         makePagination(meta, links) {
@@ -238,30 +206,14 @@ export default {
                 prev_page_url: links.prev
             };
         },
-        async deletePro(id) {
-            let api_url = process.env.MIX_API_BASE_URL + 'projects/'
-            if (confirm("Do you really want to delete this record?")) {
-                try {
-                    const response = await axios.delete( api_url + id, {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem("token")}`,
-                        },
-                    });
-                    this.$toasted.success(response.data.message)
-                    await this.getAllPro();
-                } catch (e) {
-                    this.$toasted.error(e.response.data.message)
-                }
-            }
-        },
         formatDate(dateString) {
             const options = { year: "numeric", month: "long", day: "numeric" };
             return new Date(dateString).toLocaleDateString(undefined, options);
         },
         clearData() {
-            this.project.title = "";
-            this.project.duration = "";
-            this.project.description = "";
+            this.leave.title = "";
+            this.leave.desc = "";
+            this.leave.date = "";
         }
     },
 }
@@ -271,3 +223,4 @@ export default {
 @import '../../../css/index.css';
 @import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
 </style>
+

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\HelperController;
+use App\Http\Controllers\Api\LeaveController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\ProjectController;
@@ -71,6 +72,14 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function ($router) {
             Route::get('projects/{id}', 'show');
             Route::patch('projects/{id}', 'update');
             Route::delete('projects/{id}', 'destroy');
+        });
+
+        Route::controller(LeaveController::class)->group(function () {
+            Route::post('leaves', 'store');
+            Route::get('leaves', 'index');
+            Route::get('leaves/{id}', 'show');
+            Route::patch('leaves/{id}', 'update');
+            Route::delete('leaves/{id}', 'destroy');
         });
 
         Route::controller(TaskController::class)->group(function () {

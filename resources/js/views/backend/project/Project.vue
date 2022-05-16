@@ -124,8 +124,6 @@
             </div>
         </div>
         <!--end of modal -->
-
-
     </div>
 </template>
 

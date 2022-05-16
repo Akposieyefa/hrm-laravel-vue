@@ -73,6 +73,11 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link class="nav-link" to="/leaves">
+                            <i class="bi bi-folder"></i> Leave
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link class="nav-link" to="/departments">
                             <i class="bi bi-bar-chart"></i> Payroll
                         </router-link>
@@ -90,7 +95,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/projects">
+                        <router-link class="nav-link" to="/leaves">
                             <i class="bi bi-folder"></i> Leave
                         </router-link>
                     </li>

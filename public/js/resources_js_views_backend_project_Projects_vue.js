@@ -165,8 +165,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Projects",
@@ -1003,9 +1001,7 @@ var render = function () {
                             _vm._v(" "),
                             _c("td", [
                               _vm._v(
-                                "\n                                        " +
-                                  _vm._s(_vm.formatDate(proj.created_at)) +
-                                  "\n                                    "
+                                " " + _vm._s(_vm.formatDate(proj.created_at))
                               ),
                             ]),
                             _vm._v(" "),
@@ -1081,7 +1077,7 @@ var render = function () {
                               attrs: { href: "#", tabindex: "-1" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.getAllBnk(
+                                  return _vm.getAllPro(
                                     _vm.pagination.prev_page_url
                                   )
                                 },
@@ -1122,7 +1118,7 @@ var render = function () {
                               attrs: { href: "#" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.getAllBnk(
+                                  return _vm.getAllPro(
                                     _vm.pagination.next_page_url
                                   )
                                 },
