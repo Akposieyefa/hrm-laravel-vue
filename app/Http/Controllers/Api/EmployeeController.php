@@ -35,6 +35,11 @@ class EmployeeController extends Controller
         return $this->employeeRepositoryInterface->updateEmployee($request, $id);
     }
 
+    public function getEmployeeAttendanceRecord()
+    {
+        return $this->employeeRepositoryInterface->getEmployeeAttendance();
+    }
+
     public function destroy(int $id)
     {
         return $this->employeeRepositoryInterface->deleteEmployee($id);

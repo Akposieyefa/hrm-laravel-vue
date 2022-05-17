@@ -17,6 +17,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $address
  * @property mixed $created_at
  * @property mixed $updated_at
+ * @property mixed $attendances
  */
 class EmployeeResource extends JsonResource
 {
@@ -35,6 +36,7 @@ class EmployeeResource extends JsonResource
             'department' => new DepartmentResource($this->department),
             'level' => new LevelResource($this->level),
             'organization' => new OrganizationResource($this->organization),
+            'attendances' => AttendanceResource::collection($this->attendances),
             'phone' => $clean->cleanStringHelper($this->phone_number),
             'address' => $clean->cleanStringHelper($this->address),
             'created_at' => $this->created_at,

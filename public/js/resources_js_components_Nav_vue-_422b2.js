@@ -137,6 +137,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Nav",
@@ -463,6 +468,25 @@ var render = function () {
                           [
                             _c("i", { staticClass: "bi bi-people" }),
                             _vm._v(" Employees\n                    "),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: "/attendances" },
+                          },
+                          [
+                            _c("i", { staticClass: "bi bi-pen" }),
+                            _vm._v(" Attendance\n                    "),
                           ]
                         ),
                       ],

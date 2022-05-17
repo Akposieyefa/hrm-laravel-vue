@@ -9,6 +9,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ *
+ */
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
     /**
@@ -55,6 +58,15 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     public function getAllEmployees(): JsonResponse|AnonymousResourceCollection
     {
         return $this->action->getAllEmpAction();
+    }
+
+    /**
+     * get all my employee attendances
+     * @return JsonResponse|AnonymousResourceCollection
+     */
+    public function getEmployeeAttendance(): JsonResponse|AnonymousResourceCollection
+    {
+        return $this->action->getEmployeeAttendanceAction();
     }
 
     /**

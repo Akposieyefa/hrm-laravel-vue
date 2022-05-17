@@ -13,5 +13,7 @@ interface EmployeeRepositoryInterface
     public function updateEmployee($request, $id);
 
     public function deleteEmployee($id);
+
+    public function getEmployeeAttendance();
 }
 

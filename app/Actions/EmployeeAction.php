@@ -5,6 +5,7 @@ namespace App\Actions;
 use App\Enums\RolesEnum;
 use App\Models\Employee;
 use App\Http\Resources\EmployeeResource;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Models\User;
@@ -144,6 +145,28 @@ class EmployeeAction
                 'message' => 'Sorry this data do not exist',
                 'success' => false
             ], 404);
+        }
+    }
+
+    /**
+     * get all my employee attendances
+     * @return JsonResponse|AnonymousResourceCollection
+     */
+    public function getEmployeeAttendanceAction(): JsonResponse|AnonymousResourceCollection
+    {
+        $employeesAttendance = $this->model->with(['attendances' => function ($query) {
+            $query->select(['id', 'employee_id',  'auth_date', 'clock_in', 'clock_out', 'ip_address'])->orderBy('auth_date', 'desc');
+        }])->where('organization_id', '=', auth()->user()->organization->id)->get();
+        if (count($employeesAttendance) < 1) {
+            return response()->json([
+                'message' => 'Sorry no attendance record found',
+                'success' => false
+            ], 404);
+        }else {
+            return EmployeeResource::collection($employeesAttendance)->additional([
+                'message' => "All my employees attendance records",
+                'success' => true
+            ], 200);
         }
     }
 

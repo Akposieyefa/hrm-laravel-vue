@@ -106,6 +106,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -123,11 +176,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     this.getAllLeaves();
+    this.getMyAttendance();
   },
   data: function data() {
     return {
       leaves: [],
-      pagination: {}
+      pagination: {},
+      attendances: []
     };
   },
   methods: {
@@ -169,6 +224,91 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         next_page_url: links.next,
         prev_page_url: links.prev
       };
+    },
+    getMyAttendance: function getMyAttendance(page_url) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var vm, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                vm = _this2;
+                page_url = page_url || 'attendances';
+                _context2.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("http://127.0.0.1:8000/api/v1/" + page_url, {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                  }
+                });
+
+              case 4:
+                response = _context2.sent;
+                _this2.attendances = response.data.data;
+                console.log(_this2.attendances);
+                vm.makePagination(response.data.meta, response.data.links);
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    clockOut: function clockOut() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var api_url, today, time, month, day, year, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                api_url = "http://127.0.0.1:8000/api/v1/" + 'attendances';
+                today = new Date();
+                time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                month = today.getUTCMonth() + 1; //months from 1-12
+
+                day = today.getUTCDate();
+                year = today.getUTCFullYear();
+                _context3.next = 9;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().patch(api_url, {
+                  auth_date: year + "-" + month + "-" + day,
+                  clock_out: time
+                }, {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem("token"))
+                  }
+                });
+
+              case 9:
+                response = _context3.sent;
+
+                _this3.$toasted.success(response.data.message);
+
+                _context3.next = 13;
+                return _this3.getMyAttendance();
+
+              case 13:
+                _context3.next = 18;
+                break;
+
+              case 15:
+                _context3.prev = 15;
+                _context3.t0 = _context3["catch"](0);
+
+                _this3.$toasted.error(_context3.t0.response.data.message);
+
+              case 18:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 15]]);
+      }))();
     },
     formatDate: function formatDate(dateString) {
       var options = {
@@ -920,6 +1060,198 @@ var render = function () {
                         ),
                       ])
                     : _vm._e(),
+                  _vm._v(" "),
+                  _vm.user.role === "employee"
+                    ? _c("div", { staticClass: "card shadow border-0 mb-7" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "table-responsive" }, [
+                          _c(
+                            "table",
+                            { staticClass: "table table-hover table-nowrap" },
+                            [
+                              _vm._m(3),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(
+                                  _vm.attendances,
+                                  function (attendance, index) {
+                                    return _c("tr", { key: attendance.id }, [
+                                      _c("td", [
+                                        _vm._v(" " + _vm._s(index + 1)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(" " + _vm._s(_vm.user.name)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              _vm.formatDate(
+                                                attendance.auth_date
+                                              )
+                                            ) +
+                                            "  "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(attendance.clock_in) +
+                                            " "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        !attendance.clock_out
+                                          ? _c(
+                                              "strong",
+                                              { staticClass: "text-warning" },
+                                              [_vm._v("Not yet Out")]
+                                            )
+                                          : _c(
+                                              "strong",
+                                              { staticClass: "text-success" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(attendance.clock_out)
+                                                ),
+                                              ]
+                                            ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(attendance.ip_address) +
+                                            " "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        !attendance.clock_out
+                                          ? _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-sm btn-neutral",
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.clockOut()
+                                                  },
+                                                },
+                                              },
+                                              [_vm._v(" Clock Out")]
+                                            )
+                                          : _vm._e(),
+                                      ]),
+                                    ])
+                                  }
+                                ),
+                                0
+                              ),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "card-footer border-0 py-5" },
+                          [
+                            _c("nav", { attrs: { "aria-label": "..." } }, [
+                              _c("ul", { staticClass: "pagination" }, [
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "page-item",
+                                    class: [
+                                      {
+                                        disabled: !_vm.pagination.prev_page_url,
+                                      },
+                                    ],
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#", tabindex: "-1" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.getMyAttendance(
+                                              _vm.pagination.prev_page_url
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [_vm._v("Previous")]
+                                    ),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "page-item disabled" },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Page " +
+                                            _vm._s(
+                                              _vm.pagination.current_page
+                                            ) +
+                                            " of " +
+                                            _vm._s(_vm.pagination.last_page) +
+                                            " "
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "page-item",
+                                    class: [
+                                      {
+                                        disabled: !_vm.pagination.next_page_url,
+                                      },
+                                    ],
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.getMyAttendance(
+                                              _vm.pagination.next_page_url
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [_vm._v("Next")]
+                                    ),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                          ]
+                        ),
+                      ])
+                    : _vm._e(),
                 ],
                 1
               ),
@@ -958,6 +1290,36 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "mb-0" }, [_vm._v("My Attendance Records")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-light" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("No..")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("ClockIn Time")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("ClockOut Time")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ip Address")]),
         _vm._v(" "),
         _c("th"),
       ]),

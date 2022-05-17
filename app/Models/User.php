@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->hasOne(Organization::class);
     }
 
+    public function employee(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Employee::class);
+    }
+
     public function sluggable(): array
     {
         return [

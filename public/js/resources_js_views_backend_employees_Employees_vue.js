@@ -698,7 +698,7 @@ var render = function () {
                               attrs: { href: "#", tabindex: "-1" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.getAllBnk(
+                                  return _vm.getAllEmp(
                                     _vm.pagination.prev_page_url
                                   )
                                 },
@@ -739,7 +739,7 @@ var render = function () {
                               attrs: { href: "#" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.getAllBnk(
+                                  return _vm.getAllEmp(
                                     _vm.pagination.next_page_url
                                   )
                                 },

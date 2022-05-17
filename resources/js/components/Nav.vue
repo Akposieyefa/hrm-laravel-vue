@@ -68,6 +68,11 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link class="nav-link" to="/attendances">
+                            <i class="bi bi-pen"></i> Attendance
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link class="nav-link" to="/projects">
                             <i class="bi bi-folder"></i> Projects
                         </router-link>

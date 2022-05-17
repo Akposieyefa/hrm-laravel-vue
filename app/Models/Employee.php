@@ -29,6 +29,11 @@ class Employee extends Model
        return $this->belongsTo(Organization::class, 'organization_id');
    }
 
+   public function attendances(): \Illuminate\Database\Eloquent\Relations\HasMany
+   {
+       return $this->hasMany(Attendance::class);
+   }
+
    public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
    {
        return $this->belongsTo(Department::class, 'department_id');

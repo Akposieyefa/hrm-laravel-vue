@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\EmployeeController;
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function ($router) {
         Route::controller(EmployeeController::class)->group(function () {
             Route::post('employees', 'store');
             Route::get('employees', 'index');
+            Route::get('employees-attendances', 'getEmployeeAttendanceRecord');
             Route::get('employees/{id}', 'show');
             Route::patch('employees/{id}', 'update');
             Route::delete('employees/{id}', 'destroy');
@@ -88,6 +90,12 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1'], function ($router) {
             Route::get('tasks/{id}', 'show');
             Route::patch('tasks/{id}', 'update');
             Route::delete('tasks/{id}', 'destroy');
+        });
+
+        Route::controller(AttendanceController::class)->group(function () {
+            Route::post('attendances', 'store');
+            Route::get('attendances', 'index');
+            Route::patch('attendances', 'clockOutEmployee');
         });
 
         Route::controller(HelperController::class)->group(function () {
